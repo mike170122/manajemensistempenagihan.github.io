@@ -391,6 +391,43 @@
                                 <button id="exportPDF" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors text-sm">
                                     <i class="fas fa-file-pdf mr-2"></i>Export PDF
                                 </button>
+                                <button id="exportJSON" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors text-sm">
+                                    <i class="fas fa-download mr-2"></i>Export Data
+                                </button>
+                                <button id="importJSON" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors text-sm">
+                                    <i class="fas fa-upload mr-2"></i>Import Data
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Import/Export Section -->
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle text-yellow-600 mr-2 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-yellow-800 mb-2">Sinkronisasi Data Antar Device</h4>
+                                    <p class="text-yellow-700 text-sm mb-2">Untuk berbagi data antar HP/Laptop yang berbeda:</p>
+                                    <ol class="text-yellow-700 text-sm list-decimal list-inside space-y-1">
+                                        <li>Admin di Komputer A: Klik "Export Data" untuk download file data</li>
+                                        <li>Kirim file tersebut ke Device B (WhatsApp, Email, dll)</li>
+                                        <li>User di Device B: Klik "Import Data" dan pilih file yang diterima</li>
+                                        <li>Data akan otomatis tersinkronisasi</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hidden file input for import -->
+                        <input type="file" id="importFile" accept=".json" style="display: none;">
+                        
+                        <!-- Sync Status -->
+                        <div id="syncStatus" class="hidden mb-6">
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                                    <span class="text-green-800 font-semibold">Data berhasil disinkronisasi!</span>
+                                </div>
+                                <p class="text-green-700 text-sm mt-1" id="syncDetails"></p>
                             </div>
                         </div>
                         
@@ -1039,6 +1076,166 @@
             XLSX.writeFile(wb, `data-tagihan-${new Date().toISOString().split('T')[0]}.xlsx`);
         });
 
+        // Export JSON Data for sync
+        document.getElementById('exportJSON').addEventListener('click', function() {
+            const exportData = {
+                bills: bills,
+                users: users,
+                exportDate: new Date().toISOString(),
+                exportBy: currentUser.name,
+                version: '1.0'
+            };
+            
+            const dataStr = JSON.stringify(exportData, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = `sistem-tagihan-data-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            
+            showSuccessModal('Data berhasil di-export! File dapat dibagikan ke device lain.');
+        });
+
+        // Import JSON Data for sync
+        document.getElementById('importJSON').addEventListener('click', function() {
+            document.getElementById('importFile').click();
+        });
+
+        document.getElementById('importFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                try {
+                    const importData = JSON.parse(event.target.result);
+                    
+                    // Validate import data structure
+                    if (!importData.bills || !importData.users || !importData.version) {
+                        throw new Error('Format file tidak valid');
+                    }
+                    
+                    // Show confirmation before import
+                    showImportConfirmation(importData);
+                    
+                } catch (error) {
+                    showSuccessModal('Error: File tidak valid atau rusak. Pastikan menggunakan file export yang benar.');
+                }
+            };
+            reader.readAsText(file);
+            
+            // Reset file input
+            e.target.value = '';
+        });
+
+        function showImportConfirmation(importData) {
+            const currentBillsCount = bills.length;
+            const importBillsCount = importData.bills.length;
+            const currentUsersCount = users.length;
+            const importUsersCount = importData.users.length;
+            
+            const confirmMessage = `
+                Data yang akan diimport:
+                • ${importBillsCount} data tagihan
+                • ${importUsersCount} data user
+                • Export dari: ${importData.exportBy}
+                • Tanggal export: ${new Date(importData.exportDate).toLocaleDateString('id-ID')}
+                
+                Data saat ini:
+                • ${currentBillsCount} data tagihan
+                • ${currentUsersCount} data user
+                
+                Data akan digabungkan (tidak menghapus data yang sudah ada).
+                Lanjutkan import?
+            `;
+            
+            if (window.confirm(confirmMessage)) {
+                performDataImport(importData);
+            }
+        }
+
+        function performDataImport(importData) {
+            let newBillsCount = 0;
+            let newUsersCount = 0;
+            let updatedBillsCount = 0;
+            let updatedUsersCount = 0;
+            
+            // Import bills - merge by ID, add new ones
+            importData.bills.forEach(importBill => {
+                const existingBillIndex = bills.findIndex(b => b.id === importBill.id);
+                if (existingBillIndex !== -1) {
+                    // Update existing bill
+                    bills[existingBillIndex] = {
+                        ...importBill,
+                        syncedAt: new Date().toISOString(),
+                        syncedBy: currentUser.name
+                    };
+                    updatedBillsCount++;
+                } else {
+                    // Add new bill
+                    bills.push({
+                        ...importBill,
+                        syncedAt: new Date().toISOString(),
+                        syncedBy: currentUser.name
+                    });
+                    newBillsCount++;
+                }
+            });
+            
+            // Import users - merge by email, add new ones (except default users)
+            importData.users.forEach(importUser => {
+                if (importUser.id <= 2) return; // Skip default users
+                
+                const existingUserIndex = users.findIndex(u => u.email === importUser.email);
+                if (existingUserIndex !== -1) {
+                    // Update existing user (except default users)
+                    if (users[existingUserIndex].id > 2) {
+                        users[existingUserIndex] = importUser;
+                        updatedUsersCount++;
+                    }
+                } else {
+                    // Add new user with new ID
+                    const newUser = {
+                        ...importUser,
+                        id: Math.max(...users.map(u => u.id)) + 1
+                    };
+                    users.push(newUser);
+                    newUsersCount++;
+                }
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('bills', JSON.stringify(bills));
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Show sync status
+            const syncDetails = `
+                Import berhasil:
+                • ${newBillsCount} tagihan baru ditambahkan
+                • ${updatedBillsCount} tagihan diperbarui
+                • ${newUsersCount} user baru ditambahkan
+                • ${updatedUsersCount} user diperbarui
+            `;
+            
+            document.getElementById('syncDetails').innerHTML = syncDetails.replace(/\n/g, '<br>');
+            document.getElementById('syncStatus').classList.remove('hidden');
+            
+            // Hide sync status after 10 seconds
+            setTimeout(() => {
+                document.getElementById('syncStatus').classList.add('hidden');
+            }, 10000);
+            
+            // Refresh all data displays
+            updateDashboard();
+            loadBillsHistory();
+            if (currentUser.role === 'admin') {
+                loadUsersList();
+            }
+            
+            showSuccessModal(`Data berhasil diimport! ${newBillsCount + updatedBillsCount} tagihan dan ${newUsersCount + updatedUsersCount} user telah disinkronisasi.`);
+        }
+
         document.getElementById('exportPDF').addEventListener('click', function() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
@@ -1325,5 +1522,5 @@
         // Initialize the application
         initApp();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'993fa6ece46dfe08',t:'MTc2MTM3MzY4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'993fecdf771cce82',t:'MTc2MTM3NjU1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
