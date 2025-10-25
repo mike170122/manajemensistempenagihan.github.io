@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Pengelolaan Penagihan</title>
+    <title>Sistem Pengelolaan Penjualan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -52,7 +52,7 @@
         }
     </style>
 </head>
-<body class="h-full bg-gradient-to-br from-blue-50 to-indigo-100 font-sans">
+<body class="h-full bg-gradient-to-br from-green-50 to-emerald-100 font-sans">
     <!-- Offline Notice -->
     <div id="offlineNotice" class="fixed inset-0 offline-overlay flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-2xl shadow-2xl p-8 mx-4 text-center max-w-md">
@@ -60,9 +60,9 @@
                 <i class="fas fa-moon text-gray-600 text-3xl"></i>
             </div>
             <h2 class="text-2xl font-bold text-gray-800 mb-4">Aplikasi Sedang Offline</h2>
-            <p class="text-gray-600 mb-4">Sistem penagihan beroperasi dari jam 07:00 - 23:00</p>
+            <p class="text-gray-600 mb-4">Sistem penjualan beroperasi dari jam 07:00 - 23:00</p>
             <p class="text-sm text-gray-500">Silakan kembali pada jam operasional</p>
-            <div id="currentTime" class="mt-4 text-lg font-semibold text-indigo-600"></div>
+            <div id="currentTime" class="mt-4 text-lg font-semibold text-emerald-600"></div>
         </div>
     </div>
 
@@ -71,24 +71,24 @@
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 fade-in">
             <div class="p-6 sm:p-8">
                 <div class="text-center mb-6">
-                    <div class="w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-file-invoice-dollar text-white text-2xl"></i>
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shopping-cart text-white text-2xl"></i>
                     </div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Sistem Penagihan</h2>
-                    <p class="text-gray-600 mt-2 text-sm sm:text-base">Kelola data penagihan dengan mudah</p>
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Sistem Penjualan</h2>
+                    <p class="text-gray-600 mt-2 text-sm sm:text-base">Kelola data penjualan dengan mudah</p>
                 </div>
 
                 <!-- Login Form -->
                 <form id="loginForm" class="space-y-4">
                     <div>
                         <label for="loginEmail" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                        <input type="email" id="loginEmail" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base">
+                        <input type="email" id="loginEmail" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base">
                     </div>
                     <div>
                         <label for="loginPassword" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                        <input type="password" id="loginPassword" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base">
+                        <input type="password" id="loginPassword" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base">
                     </div>
-                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105 text-sm sm:text-base">
+                    <button type="submit" class="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 rounded-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-all transform hover:scale-105 text-sm sm:text-base">
                         Masuk
                     </button>
                 </form>
@@ -97,19 +97,19 @@
                 <form id="registerForm" class="space-y-4 hidden">
                     <div>
                         <label for="registerName" class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
-                        <input type="text" id="registerName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base">
+                        <input type="text" id="registerName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base">
                     </div>
                     <div>
                         <label for="registerEmail" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                        <input type="email" id="registerEmail" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base">
+                        <input type="email" id="registerEmail" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base">
                     </div>
                     <div>
                         <label for="registerPassword" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                        <input type="password" id="registerPassword" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base">
+                        <input type="password" id="registerPassword" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base">
                     </div>
                     <div>
                         <label for="registerRole" class="block text-sm font-medium text-gray-700 mb-2">Role</label>
-                        <select id="registerRole" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base">
+                        <select id="registerRole" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base">
                             <option value="">Pilih Role</option>
                             <option value="admin">Admin</option>
                             <option value="user">User</option>
@@ -121,7 +121,7 @@
                 </form>
 
                 <div class="mt-6 text-center">
-                    <button id="toggleAuth" class="text-blue-600 hover:text-blue-800 font-medium text-sm">
+                    <button id="toggleAuth" class="text-green-600 hover:text-green-800 font-medium text-sm">
                         Belum punya akun? Daftar di sini
                     </button>
                 </div>
@@ -138,10 +138,10 @@
                     <button id="mobileMenuBtn" class="p-2 rounded-lg hover:bg-gray-100">
                         <i class="fas fa-bars text-gray-600"></i>
                     </button>
-                    <div class="w-8 h-8 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-file-invoice-dollar text-white text-sm"></i>
+                    <div class="w-8 h-8 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-shopping-cart text-white text-sm"></i>
                     </div>
-                    <h1 class="text-lg font-bold text-gray-800">Sistem Penagihan</h1>
+                    <h1 class="text-lg font-bold text-gray-800">Sistem Penjualan</h1>
                 </div>
                 <div class="flex items-center space-x-2">
                     <span class="text-xs text-gray-600">Online</span>
@@ -159,11 +159,11 @@
             <div class="p-4 border-b border-gray-200">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-file-invoice-dollar text-white text-lg"></i>
+                        <div class="w-10 h-10 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-shopping-cart text-white text-lg"></i>
                         </div>
                         <div>
-                            <h1 class="text-lg font-bold text-gray-800">Sistem Penagihan</h1>
+                            <h1 class="text-lg font-bold text-gray-800">Sistem Penjualan</h1>
                             <p class="text-xs text-gray-600" id="userWelcome">Selamat datang!</p>
                         </div>
                     </div>
@@ -182,16 +182,16 @@
                         </button>
                     </li>
                     <li>
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider px-4 py-2">Data Tagihan</div>
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider px-4 py-2">Data Penjualan</div>
                         <ul class="space-y-1">
                             <li>
-                                <button class="sidebar-btn w-full text-left px-4 py-2 rounded-lg transition-colors text-sm" data-tab="billing">
-                                    <i class="fas fa-plus-circle mr-3 w-4"></i>Tambah Tagihan
+                                <button class="sidebar-btn w-full text-left px-4 py-2 rounded-lg transition-colors text-sm" data-tab="sales">
+                                    <i class="fas fa-plus-circle mr-3 w-4"></i>Tambah Penjualan
                                 </button>
                             </li>
                             <li>
                                 <button class="sidebar-btn w-full text-left px-4 py-2 rounded-lg transition-colors text-sm" data-tab="history">
-                                    <i class="fas fa-list mr-3 w-4"></i>Kelola Tagihan
+                                    <i class="fas fa-list mr-3 w-4"></i>Kelola Penjualan
                                 </button>
                             </li>
                         </ul>
@@ -251,36 +251,36 @@
                 <!-- Dashboard Tab -->
                 <div id="dashboard" class="tab-content p-3 lg:p-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6 lg:mb-8">
-                        <div class="bg-white rounded-xl shadow-md p-4 lg:p-6 border-l-4 border-blue-500">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="text-sm text-gray-600">Total Tagihan</p>
-                                    <p class="text-xl lg:text-2xl font-bold text-gray-800" id="totalBills">0</p>
-                                </div>
-                                <div class="w-10 h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-file-invoice text-blue-600 text-lg lg:text-xl"></i>
-                                </div>
-                            </div>
-                        </div>
                         <div class="bg-white rounded-xl shadow-md p-4 lg:p-6 border-l-4 border-green-500">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <p class="text-sm text-gray-600">Lunas</p>
-                                    <p class="text-xl lg:text-2xl font-bold text-gray-800" id="paidBills">0</p>
+                                    <p class="text-sm text-gray-600">Total Penjualan</p>
+                                    <p class="text-xl lg:text-2xl font-bold text-gray-800" id="totalSales">0</p>
                                 </div>
                                 <div class="w-10 h-10 lg:w-12 lg:h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-check-circle text-green-600 text-lg lg:text-xl"></i>
+                                    <i class="fas fa-shopping-cart text-green-600 text-lg lg:text-xl"></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-white rounded-xl shadow-md p-4 lg:p-6 border-l-4 border-yellow-500">
+                        <div class="bg-white rounded-xl shadow-md p-4 lg:p-6 border-l-4 border-blue-500">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <p class="text-sm text-gray-600">Pending</p>
-                                    <p class="text-xl lg:text-2xl font-bold text-gray-800" id="pendingBills">0</p>
+                                    <p class="text-sm text-gray-600">Lunas</p>
+                                    <p class="text-xl lg:text-2xl font-bold text-gray-800" id="paidSales">0</p>
                                 </div>
-                                <div class="w-10 h-10 lg:w-12 lg:h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-                                    <i class="fas fa-clock text-yellow-600 text-lg lg:text-xl"></i>
+                                <div class="w-10 h-10 lg:w-12 lg:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-check-circle text-blue-600 text-lg lg:text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md p-4 lg:p-6 border-l-4 border-orange-500">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm text-gray-600">Hutang</p>
+                                    <p class="text-xl lg:text-2xl font-bold text-gray-800" id="debtSales">0</p>
+                                </div>
+                                <div class="w-10 h-10 lg:w-12 lg:h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-credit-card text-orange-600 text-lg lg:text-xl"></i>
                                 </div>
                             </div>
                         </div>
@@ -288,7 +288,7 @@
                             <div class="flex items-center justify-between">
                                 <div>
                                     <p class="text-sm text-gray-600">Belum Lunas</p>
-                                    <p class="text-xl lg:text-2xl font-bold text-gray-800" id="overdueBills">0</p>
+                                    <p class="text-xl lg:text-2xl font-bold text-gray-800" id="overdueSales">0</p>
                                 </div>
                                 <div class="w-10 h-10 lg:w-12 lg:h-12 bg-red-100 rounded-lg flex items-center justify-center">
                                     <i class="fas fa-exclamation-triangle text-red-600 text-lg lg:text-xl"></i>
@@ -298,67 +298,79 @@
                     </div>
 
                     <div class="bg-white rounded-xl shadow-md p-4 lg:p-6">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Tagihan Terbaru</h3>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Penjualan Terbaru</h3>
                         <div class="overflow-x-auto">
-                            <div id="recentBills" class="space-y-3">
-                                <p class="text-gray-500 text-center py-8">Belum ada data tagihan</p>
+                            <div id="recentSales" class="space-y-3">
+                                <p class="text-gray-500 text-center py-8">Belum ada data penjualan</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Billing Input Tab -->
-                <div id="billing" class="tab-content hidden p-3 lg:p-6">
+                <!-- Sales Input Tab -->
+                <div id="sales" class="tab-content hidden p-3 lg:p-6">
                     <div class="bg-white rounded-xl shadow-md p-4 lg:p-6 max-w-4xl mx-auto">
                         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 space-y-3 sm:space-y-0">
-                            <h3 class="text-lg lg:text-xl font-semibold text-gray-800" id="formTitle">Tambah Data Tagihan</h3>
+                            <h3 class="text-lg lg:text-xl font-semibold text-gray-800" id="formTitle">Tambah Data Penjualan</h3>
                             <button id="cancelEdit" class="hidden bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors text-sm w-full sm:w-auto">
                                 <i class="fas fa-times mr-2"></i>Batal Edit
                             </button>
                         </div>
-                        <form id="billingForm" class="space-y-4">
+                        <form id="salesForm" class="space-y-4">
                             <input type="hidden" id="editId" value="">
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                                 <div>
-                                    <label for="customerName" class="block text-sm font-medium text-gray-700 mb-2">Nama Pelanggan</label>
-                                    <input type="text" id="customerName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base">
+                                    <label for="customerName" class="block text-sm font-medium text-gray-700 mb-2">Nama Pembeli</label>
+                                    <input type="text" id="customerName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base">
                                 </div>
                                 <div>
                                     <label for="customerPhone" class="block text-sm font-medium text-gray-700 mb-2">No. Telepon</label>
-                                    <input type="tel" id="customerPhone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base">
+                                    <input type="tel" id="customerPhone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base">
                                 </div>
                             </div>
                             
                             <div>
                                 <label for="customerAddress" class="block text-sm font-medium text-gray-700 mb-2">Alamat</label>
-                                <textarea id="customerAddress" required rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"></textarea>
+                                <textarea id="customerAddress" required rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base"></textarea>
                             </div>
 
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                                 <div>
-                                    <label for="billAmount" class="block text-sm font-medium text-gray-700 mb-2">Jumlah Tagihan (Rp)</label>
-                                    <input type="number" id="billAmount" required min="0" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base">
+                                    <label for="productName" class="block text-sm font-medium text-gray-700 mb-2">Nama Produk</label>
+                                    <input type="text" id="productName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base">
                                 </div>
                                 <div>
-                                    <label for="dueDate" class="block text-sm font-medium text-gray-700 mb-2">Tanggal Jatuh Tempo</label>
-                                    <input type="date" id="dueDate" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base">
+                                    <label for="quantity" class="block text-sm font-medium text-gray-700 mb-2">Jumlah</label>
+                                    <input type="number" id="quantity" required min="1" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="unitPrice" class="block text-sm font-medium text-gray-700 mb-2">Harga Satuan (Rp)</label>
+                                    <input type="number" id="unitPrice" required min="0" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base">
+                                </div>
+                                <div>
+                                    <label for="totalAmount" class="block text-sm font-medium text-gray-700 mb-2">Total Harga (Rp)</label>
+                                    <input type="number" id="totalAmount" required min="0" readonly class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-sm sm:text-base">
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                                 <div>
                                     <label for="paymentMethod" class="block text-sm font-medium text-gray-700 mb-2">Metode Pembayaran</label>
-                                    <select id="paymentMethod" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base">
+                                    <select id="paymentMethod" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base">
                                         <option value="">Pilih Metode Pembayaran</option>
                                         <option value="tunai">Tunai</option>
                                         <option value="transfer">Transfer</option>
+                                        <option value="kredit">Kredit/Cicilan</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <label for="billStatus" class="block text-sm font-medium text-gray-700 mb-2">Status</label>
-                                    <select id="billStatus" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base">
+                                    <label for="salesStatus" class="block text-sm font-medium text-gray-700 mb-2">Status Pembayaran</label>
+                                    <select id="salesStatus" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base">
                                         <option value="">Pilih Status</option>
-                                        <option value="pending">Pending</option>
+                                        <option value="hutang">Hutang</option>
                                         <option value="paid">Lunas</option>
                                         <option value="overdue">Belum Lunas</option>
                                     </select>
@@ -366,9 +378,9 @@
                             </div>
 
                             <div>
-                                <label for="officerName" class="block text-sm font-medium text-gray-700 mb-2">Nama Petugas</label>
-                                <select id="officerName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base">
-                                    <option value="">Pilih Nama Petugas</option>
+                                <label for="salesPerson" class="block text-sm font-medium text-gray-700 mb-2">Sales Person</label>
+                                <select id="salesPerson" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base">
+                                    <option value="">Pilih Sales Person</option>
                                     <option value="Mario Haulussy">Mario Haulussy</option>
                                     <option value="Macho Haulussy">Macho Haulussy</option>
                                     <option value="Ryan Pattiwael">Ryan Pattiwael</option>
@@ -381,12 +393,12 @@
                             </div>
 
                             <div>
-                                <label for="billDescription" class="block text-sm font-medium text-gray-700 mb-2">Keterangan</label>
-                                <textarea id="billDescription" rows="3" placeholder="Masukkan keterangan tambahan (opsional)" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"></textarea>
+                                <label for="salesDescription" class="block text-sm font-medium text-gray-700 mb-2">Keterangan</label>
+                                <textarea id="salesDescription" rows="3" placeholder="Masukkan keterangan tambahan (opsional)" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all text-sm sm:text-base"></textarea>
                             </div>
 
-                            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all transform hover:scale-105 text-sm sm:text-base">
-                                <i class="fas fa-save mr-2"></i><span id="submitText">Simpan Tagihan</span>
+                            <button type="submit" class="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 rounded-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-all transform hover:scale-105 text-sm sm:text-base">
+                                <i class="fas fa-save mr-2"></i><span id="submitText">Simpan Penjualan</span>
                             </button>
                         </form>
                     </div>
@@ -396,20 +408,20 @@
                 <div id="history" class="tab-content hidden p-3 lg:p-6">
                     <div class="bg-white rounded-xl shadow-md p-4 lg:p-6">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 space-y-4 sm:space-y-0">
-                            <h3 class="text-lg lg:text-xl font-semibold text-gray-800">Kelola Data Tagihan</h3>
+                            <h3 class="text-lg lg:text-xl font-semibold text-gray-800">Kelola Data Penjualan</h3>
                             <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 w-full sm:w-auto">
-                                <input type="text" id="searchInput" placeholder="Cari nama pelanggan..." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm">
-                                <select id="statusFilter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm">
+                                <input type="text" id="searchInput" placeholder="Cari nama pembeli..." class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm">
+                                <select id="statusFilter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm">
                                     <option value="">Semua Status</option>
-                                    <option value="pending">Pending</option>
+                                    <option value="hutang">Hutang</option>
                                     <option value="paid">Lunas</option>
                                     <option value="overdue">Belum Lunas</option>
                                 </select>
                             </div>
                         </div>
                         <div class="overflow-x-auto">
-                            <div id="billsList" class="space-y-3">
-                                <p class="text-gray-500 text-center py-8">Belum ada data tagihan</p>
+                            <div id="salesList" class="space-y-3">
+                                <p class="text-gray-500 text-center py-8">Belum ada data penjualan</p>
                             </div>
                         </div>
                     </div>
@@ -443,28 +455,28 @@
                         </div>
                         
                         <!-- Import/Export Section -->
-                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4 mb-6">
+                        <div class="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg p-4 mb-6">
                             <div class="flex items-start">
-                                <i class="fas fa-sync-alt text-blue-600 mr-3 mt-1 text-lg"></i>
+                                <i class="fas fa-sync-alt text-green-600 mr-3 mt-1 text-lg"></i>
                                 <div>
-                                    <h4 class="font-semibold text-blue-800 mb-2">🔄 Sinkronisasi Data Multi-Device</h4>
-                                    <p class="text-blue-700 text-sm mb-3">Bagikan data antar HP/Laptop dengan mudah:</p>
+                                    <h4 class="font-semibold text-green-800 mb-2">🔄 Sinkronisasi Data Multi-Device</h4>
+                                    <p class="text-green-700 text-sm mb-3">Bagikan data penjualan antar HP/Laptop dengan mudah:</p>
                                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 text-sm">
-                                        <div class="bg-white rounded-lg p-3 border border-blue-100">
-                                            <h5 class="font-semibold text-blue-800 mb-2">📤 Cara Export (Pengirim)</h5>
-                                            <ol class="text-blue-700 list-decimal list-inside space-y-1">
+                                        <div class="bg-white rounded-lg p-3 border border-green-100">
+                                            <h5 class="font-semibold text-green-800 mb-2">📤 Cara Export (Pengirim)</h5>
+                                            <ol class="text-green-700 list-decimal list-inside space-y-1">
                                                 <li>Klik tombol "Export/Excel" di atas</li>
                                                 <li><strong>Mobile:</strong> Pilih Download/Share/Copy</li>
                                                 <li><strong>Desktop:</strong> File auto-download</li>
                                                 <li>Kirim file via WhatsApp/Email</li>
                                             </ol>
-                                            <div class="mt-2 p-2 bg-blue-50 rounded text-xs">
+                                            <div class="mt-2 p-2 bg-green-50 rounded text-xs">
                                                 <strong>📱 Tips Mobile:</strong> Jika JSON gagal, gunakan Excel export yang lebih kompatibel
                                             </div>
                                         </div>
-                                        <div class="bg-white rounded-lg p-3 border border-blue-100">
-                                            <h5 class="font-semibold text-blue-800 mb-2">📥 Cara Import (Penerima)</h5>
-                                            <ol class="text-blue-700 list-decimal list-inside space-y-1">
+                                        <div class="bg-white rounded-lg p-3 border border-green-100">
+                                            <h5 class="font-semibold text-green-800 mb-2">📥 Cara Import (Penerima)</h5>
+                                            <ol class="text-green-700 list-decimal list-inside space-y-1">
                                                 <li>Terima file dari pengirim</li>
                                                 <li>Klik "Import JSON" atau "Import Excel"</li>
                                                 <li>Pilih file yang diterima</li>
@@ -524,7 +536,7 @@
                                 <h4 class="font-semibold text-gray-800 mb-4">Ringkasan Bulanan</h4>
                                 <div id="monthlyReport" class="space-y-2">
                                     <div class="flex justify-between">
-                                        <span class="text-gray-600">Total Tagihan:</span>
+                                        <span class="text-gray-600">Total Penjualan:</span>
                                         <span class="font-semibold" id="monthlyTotal">Rp 0</span>
                                     </div>
                                     <div class="flex justify-between">
@@ -549,6 +561,10 @@
                                         <span class="text-gray-600">Transfer:</span>
                                         <span class="font-semibold" id="transferCount">0</span>
                                     </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Kredit:</span>
+                                        <span class="font-semibold" id="creditCount">0</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -560,7 +576,7 @@
                     <div class="bg-white rounded-xl shadow-md p-4 lg:p-6">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 space-y-4 sm:space-y-0">
                             <h3 class="text-lg lg:text-xl font-semibold text-gray-800">Kelola User</h3>
-                            <button id="addUserBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors text-sm w-full sm:w-auto">
+                            <button id="addUserBtn" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors text-sm w-full sm:w-auto">
                                 <i class="fas fa-plus mr-2"></i>Tambah User
                             </button>
                         </div>
@@ -571,19 +587,19 @@
                             <form id="userForm" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                                 <div>
                                     <label for="newUserName" class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
-                                    <input type="text" id="newUserName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm">
+                                    <input type="text" id="newUserName" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm">
                                 </div>
                                 <div>
                                     <label for="newUserEmail" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                                    <input type="email" id="newUserEmail" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm">
+                                    <input type="email" id="newUserEmail" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm">
                                 </div>
                                 <div>
                                     <label for="newUserPassword" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                                    <input type="password" id="newUserPassword" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm">
+                                    <input type="password" id="newUserPassword" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm">
                                 </div>
                                 <div>
                                     <label for="newUserRole" class="block text-sm font-medium text-gray-700 mb-2">Role</label>
-                                    <select id="newUserRole" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm">
+                                    <select id="newUserRole" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm">
                                         <option value="">Pilih Role</option>
                                         <option value="admin">Admin</option>
                                         <option value="user">User</option>
@@ -610,19 +626,19 @@
                 <!-- Generate Data Tab -->
                 <div id="generate" class="tab-content hidden p-3 lg:p-6">
                     <div class="bg-white rounded-xl shadow-md p-4 lg:p-6">
-                        <h3 class="text-lg lg:text-xl font-semibold text-gray-800 mb-6">Generate Data Tagihan</h3>
+                        <h3 class="text-lg lg:text-xl font-semibold text-gray-800 mb-6">Generate Data Penjualan</h3>
                         
                         <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
                             <div class="flex items-center">
                                 <i class="fas fa-exclamation-triangle text-yellow-600 mr-2"></i>
-                                <p class="text-yellow-800 text-sm">Fitur ini akan membuat data tagihan dummy untuk testing. Data yang sudah ada tidak akan terhapus.</p>
+                                <p class="text-yellow-800 text-sm">Fitur ini akan membuat data penjualan dummy untuk testing. Data yang sudah ada tidak akan terhapus.</p>
                             </div>
                         </div>
                         
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                             <div>
                                 <label for="generateCount" class="block text-sm font-medium text-gray-700 mb-2">Jumlah Data yang Akan Dibuat</label>
-                                <select id="generateCount" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <select id="generateCount" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
                                     <option value="10">10 Data</option>
                                     <option value="25">25 Data</option>
                                     <option value="50">50 Data</option>
@@ -633,8 +649,8 @@
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Status Data</label>
                                 <div class="space-y-2">
                                     <label class="flex items-center">
-                                        <input type="checkbox" id="genPending" checked class="mr-2">
-                                        <span class="text-sm">Pending</span>
+                                        <input type="checkbox" id="genDebt" checked class="mr-2">
+                                        <span class="text-sm">Hutang</span>
                                     </label>
                                     <label class="flex items-center">
                                         <input type="checkbox" id="genPaid" checked class="mr-2">
@@ -649,7 +665,7 @@
                         </div>
                         
                         <button id="generateDataBtn" class="mt-6 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg transition-colors font-semibold w-full lg:w-auto">
-                            <i class="fas fa-magic mr-2"></i>Generate Data Tagihan
+                            <i class="fas fa-magic mr-2"></i>Generate Data Penjualan
                         </button>
                         
                         <div id="generateProgress" class="hidden mt-4">
@@ -685,7 +701,7 @@
                 <i class="fas fa-trash text-red-600 text-2xl"></i>
             </div>
             <h3 class="text-lg font-semibold text-gray-800 mb-2">Konfirmasi Hapus</h3>
-            <p class="text-gray-600 mb-6">Apakah Anda yakin ingin menghapus data tagihan ini? Tindakan ini tidak dapat dibatalkan.</p>
+            <p class="text-gray-600 mb-6">Apakah Anda yakin ingin menghapus data penjualan ini? Tindakan ini tidak dapat dibatalkan.</p>
             <div class="flex space-x-3">
                 <button id="cancelDelete" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors">
                     Batal
@@ -700,8 +716,8 @@
     <script>
         // Application state
         let currentUser = null;
-        let bills = JSON.parse(localStorage.getItem('bills')) || [];
-        let users = JSON.parse(localStorage.getItem('users')) || [
+        let sales = JSON.parse(localStorage.getItem('sales')) || [];
+        let users = JSON.parse(localStorage.getItem('users_sales')) || [
             { id: 1, name: 'Admin', email: 'admin@admin.com', password: 'admin123', role: 'admin' },
             { id: 2, name: 'User', email: 'user@user.com', password: 'user123', role: 'user' }
         ];
@@ -777,11 +793,22 @@
             initMobileMenu();
 
             // Check if user is logged in
-            const savedUser = localStorage.getItem('currentUser');
+            const savedUser = localStorage.getItem('currentUser_sales');
             if (savedUser) {
                 currentUser = JSON.parse(savedUser);
                 showMainApp();
             }
+
+            // Auto-calculate total amount
+            document.getElementById('quantity').addEventListener('input', calculateTotal);
+            document.getElementById('unitPrice').addEventListener('input', calculateTotal);
+        }
+
+        function calculateTotal() {
+            const quantity = parseFloat(document.getElementById('quantity').value) || 0;
+            const unitPrice = parseFloat(document.getElementById('unitPrice').value) || 0;
+            const total = quantity * unitPrice;
+            document.getElementById('totalAmount').value = total;
         }
 
         // Authentication functions
@@ -795,7 +822,7 @@
             
             if (user) {
                 currentUser = user;
-                localStorage.setItem('currentUser', JSON.stringify(user));
+                localStorage.setItem('currentUser_sales', JSON.stringify(user));
                 showMainApp();
             } else {
                 showMessage('Email atau password salah!', 'error');
@@ -824,7 +851,7 @@
             };
             
             users.push(newUser);
-            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('users_sales', JSON.stringify(users));
             
             showMessage('Registrasi berhasil! Silakan login.', 'success');
             toggleAuthForm();
@@ -879,13 +906,13 @@
             }
             
             updateDashboard();
-            loadBillsHistory();
+            loadSalesHistory();
         }
 
         // Logout function
         document.getElementById('logoutBtn').addEventListener('click', function() {
             currentUser = null;
-            localStorage.removeItem('currentUser');
+            localStorage.removeItem('currentUser_sales');
             document.getElementById('mainApp').classList.add('hidden');
             document.getElementById('authModal').classList.remove('hidden');
         });
@@ -909,8 +936,8 @@
             // Update page title
             const titles = {
                 'dashboard': 'Dashboard',
-                'billing': 'Tambah Data Tagihan',
-                'history': 'Kelola Data Tagihan',
+                'sales': 'Tambah Data Penjualan',
+                'history': 'Kelola Data Penjualan',
                 'reports': 'Laporan & Export',
                 'users': 'Kelola User',
                 'generate': 'Generate Data'
@@ -933,8 +960,8 @@
         let editingId = null;
         let deleteId = null;
 
-        // Billing form
-        document.getElementById('billingForm').addEventListener('submit', function(e) {
+        // Sales form
+        document.getElementById('salesForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const editId = document.getElementById('editId').value;
@@ -944,39 +971,41 @@
                 customerName: document.getElementById('customerName').value,
                 customerPhone: document.getElementById('customerPhone').value,
                 customerAddress: document.getElementById('customerAddress').value,
-                amount: parseFloat(document.getElementById('billAmount').value),
-                dueDate: document.getElementById('dueDate').value,
+                productName: document.getElementById('productName').value,
+                quantity: parseInt(document.getElementById('quantity').value),
+                unitPrice: parseFloat(document.getElementById('unitPrice').value),
+                totalAmount: parseFloat(document.getElementById('totalAmount').value),
                 paymentMethod: document.getElementById('paymentMethod').value,
-                status: document.getElementById('billStatus').value,
-                description: document.getElementById('billDescription').value,
-                officerName: document.getElementById('officerName').value,
-                createdAt: editId ? bills.find(b => b.id == editId).createdAt : new Date().toISOString(),
-                createdBy: editId ? bills.find(b => b.id == editId).createdBy : currentUser.name,
+                status: document.getElementById('salesStatus').value,
+                description: document.getElementById('salesDescription').value,
+                salesPerson: document.getElementById('salesPerson').value,
+                createdAt: editId ? sales.find(s => s.id == editId).createdAt : new Date().toISOString(),
+                createdBy: editId ? sales.find(s => s.id == editId).createdBy : currentUser.name,
                 updatedAt: editId ? new Date().toISOString() : null,
                 updatedBy: editId ? currentUser.name : null
             };
             
             if (editId) {
-                // Update existing bill
-                const index = bills.findIndex(b => b.id == editId);
+                // Update existing sale
+                const index = sales.findIndex(s => s.id == editId);
                 if (index !== -1) {
-                    bills[index] = formData;
-                    showSuccessModal('Data tagihan berhasil diperbarui!');
+                    sales[index] = formData;
+                    showSuccessModal('Data penjualan berhasil diperbarui!');
                 }
             } else {
-                // Add new bill
-                bills.push(formData);
-                showSuccessModal('Data tagihan berhasil disimpan!');
+                // Add new sale
+                sales.push(formData);
+                showSuccessModal('Data penjualan berhasil disimpan!');
             }
             
-            localStorage.setItem('bills', JSON.stringify(bills));
+            localStorage.setItem('sales', JSON.stringify(sales));
             
             // Reset form
             resetForm();
             
             // Update dashboard and history
             updateDashboard();
-            loadBillsHistory();
+            loadSalesHistory();
         });
 
         // Cancel edit
@@ -986,43 +1015,45 @@
 
         // Reset form function
         function resetForm() {
-            document.getElementById('billingForm').reset();
+            document.getElementById('salesForm').reset();
             document.getElementById('editId').value = '';
-            document.getElementById('formTitle').textContent = 'Tambah Data Tagihan';
-            document.getElementById('submitText').textContent = 'Simpan Tagihan';
+            document.getElementById('formTitle').textContent = 'Tambah Data Penjualan';
+            document.getElementById('submitText').textContent = 'Simpan Penjualan';
             document.getElementById('cancelEdit').classList.add('hidden');
             editingId = null;
         }
 
-        // Edit bill function
-        function editBill(id) {
-            const bill = bills.find(b => b.id == id);
-            if (!bill) return;
+        // Edit sale function
+        function editSale(id) {
+            const sale = sales.find(s => s.id == id);
+            if (!sale) return;
             
-            // Fill form with bill data
-            document.getElementById('editId').value = bill.id;
-            document.getElementById('customerName').value = bill.customerName;
-            document.getElementById('customerPhone').value = bill.customerPhone;
-            document.getElementById('customerAddress').value = bill.customerAddress;
-            document.getElementById('billAmount').value = bill.amount;
-            document.getElementById('dueDate').value = bill.dueDate;
-            document.getElementById('paymentMethod').value = bill.paymentMethod;
-            document.getElementById('billStatus').value = bill.status;
-            document.getElementById('billDescription').value = bill.description || '';
-            document.getElementById('officerName').value = bill.officerName || '';
+            // Fill form with sale data
+            document.getElementById('editId').value = sale.id;
+            document.getElementById('customerName').value = sale.customerName;
+            document.getElementById('customerPhone').value = sale.customerPhone;
+            document.getElementById('customerAddress').value = sale.customerAddress;
+            document.getElementById('productName').value = sale.productName;
+            document.getElementById('quantity').value = sale.quantity;
+            document.getElementById('unitPrice').value = sale.unitPrice;
+            document.getElementById('totalAmount').value = sale.totalAmount;
+            document.getElementById('paymentMethod').value = sale.paymentMethod;
+            document.getElementById('salesStatus').value = sale.status;
+            document.getElementById('salesDescription').value = sale.description || '';
+            document.getElementById('salesPerson').value = sale.salesPerson || '';
             
             // Update form UI
-            document.getElementById('formTitle').textContent = 'Edit Data Tagihan';
-            document.getElementById('submitText').textContent = 'Update Tagihan';
+            document.getElementById('formTitle').textContent = 'Edit Data Penjualan';
+            document.getElementById('submitText').textContent = 'Update Penjualan';
             document.getElementById('cancelEdit').classList.remove('hidden');
             
-            // Switch to billing tab
-            showTab('billing');
+            // Switch to sales tab
+            showTab('sales');
             editingId = id;
         }
 
-        // Delete bill function
-        function deleteBill(id) {
+        // Delete sale function
+        function deleteSale(id) {
             deleteId = id;
             document.getElementById('deleteModal').classList.remove('hidden');
         }
@@ -1035,12 +1066,12 @@
 
         document.getElementById('confirmDelete').addEventListener('click', function() {
             if (deleteId) {
-                bills = bills.filter(b => b.id != deleteId);
-                localStorage.setItem('bills', JSON.stringify(bills));
+                sales = sales.filter(s => s.id != deleteId);
+                localStorage.setItem('sales', JSON.stringify(sales));
                 
-                showSuccessModal('Data tagihan berhasil dihapus!');
+                showSuccessModal('Data penjualan berhasil dihapus!');
                 updateDashboard();
-                loadBillsHistory();
+                loadSalesHistory();
                 
                 document.getElementById('deleteModal').classList.add('hidden');
                 deleteId = null;
@@ -1049,33 +1080,33 @@
 
         // Dashboard functions
         function updateDashboard() {
-            const totalBills = bills.length;
-            const paidBills = bills.filter(bill => bill.status === 'paid').length;
-            const pendingBills = bills.filter(bill => bill.status === 'pending').length;
-            const overdueBills = bills.filter(bill => bill.status === 'overdue').length;
+            const totalSales = sales.length;
+            const paidSales = sales.filter(sale => sale.status === 'paid').length;
+            const debtSales = sales.filter(sale => sale.status === 'hutang').length;
+            const overdueSales = sales.filter(sale => sale.status === 'overdue').length;
             
-            document.getElementById('totalBills').textContent = totalBills;
-            document.getElementById('paidBills').textContent = paidBills;
-            document.getElementById('pendingBills').textContent = pendingBills;
-            document.getElementById('overdueBills').textContent = overdueBills;
+            document.getElementById('totalSales').textContent = totalSales;
+            document.getElementById('paidSales').textContent = paidSales;
+            document.getElementById('debtSales').textContent = debtSales;
+            document.getElementById('overdueSales').textContent = overdueSales;
             
-            // Show recent bills
-            const recentBills = bills.slice(-5).reverse();
-            const recentBillsContainer = document.getElementById('recentBills');
+            // Show recent sales
+            const recentSales = sales.slice(-5).reverse();
+            const recentSalesContainer = document.getElementById('recentSales');
             
-            if (recentBills.length === 0) {
-                recentBillsContainer.innerHTML = '<p class="text-gray-500 text-center py-8">Belum ada data tagihan</p>';
+            if (recentSales.length === 0) {
+                recentSalesContainer.innerHTML = '<p class="text-gray-500 text-center py-8">Belum ada data penjualan</p>';
             } else {
-                recentBillsContainer.innerHTML = recentBills.map(bill => `
+                recentSalesContainer.innerHTML = recentSales.map(sale => `
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 bg-gray-50 rounded-lg space-y-2 sm:space-y-0">
                         <div class="flex-1">
-                            <h4 class="font-semibold text-gray-800">${bill.customerName}</h4>
-                            <p class="text-sm text-gray-600">${bill.customerPhone}</p>
-                            <p class="text-sm text-gray-500">${bill.paymentMethod}</p>
+                            <h4 class="font-semibold text-gray-800">${sale.customerName}</h4>
+                            <p class="text-sm text-gray-600">${sale.productName} (${sale.quantity}x)</p>
+                            <p class="text-sm text-gray-500">${sale.paymentMethod}</p>
                         </div>
                         <div class="text-right">
-                            <p class="font-semibold text-gray-800">Rp ${bill.amount.toLocaleString('id-ID')}</p>
-                            <span class="inline-block px-2 py-1 text-xs rounded-full ${getStatusColor(bill.status)}">${getStatusText(bill.status)}</span>
+                            <p class="font-semibold text-gray-800">Rp ${sale.totalAmount.toLocaleString('id-ID')}</p>
+                            <span class="inline-block px-2 py-1 text-xs rounded-full ${getStatusColor(sale.status)}">${getStatusText(sale.status)}</span>
                         </div>
                     </div>
                 `).join('');
@@ -1083,57 +1114,60 @@
         }
 
         // History functions
-        function loadBillsHistory() {
-            const billsList = document.getElementById('billsList');
-            let filteredBills = [...bills];
+        function loadSalesHistory() {
+            const salesList = document.getElementById('salesList');
+            let filteredSales = [...sales];
             
             // Apply filters
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const statusFilter = document.getElementById('statusFilter').value;
             
             if (searchTerm) {
-                filteredBills = filteredBills.filter(bill => 
-                    bill.customerName.toLowerCase().includes(searchTerm)
+                filteredSales = filteredSales.filter(sale => 
+                    sale.customerName.toLowerCase().includes(searchTerm)
                 );
             }
             
             if (statusFilter) {
-                filteredBills = filteredBills.filter(bill => bill.status === statusFilter);
+                filteredSales = filteredSales.filter(sale => sale.status === statusFilter);
             }
             
-            if (filteredBills.length === 0) {
-                billsList.innerHTML = '<p class="text-gray-500 text-center py-8">Tidak ada data yang ditemukan</p>';
+            if (filteredSales.length === 0) {
+                salesList.innerHTML = '<p class="text-gray-500 text-center py-8">Tidak ada data yang ditemukan</p>';
             } else {
-                billsList.innerHTML = filteredBills.reverse().map(bill => `
+                salesList.innerHTML = filteredSales.reverse().map(sale => `
                     <div class="bg-white rounded-lg p-4 space-y-3 shadow-sm border border-gray-200">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-2 sm:space-y-0">
                             <div class="flex-1">
-                                <h4 class="font-semibold text-gray-800">${bill.customerName}</h4>
-                                <p class="text-sm text-gray-600">${bill.customerPhone}</p>
-                                <p class="text-sm text-gray-500">${bill.customerAddress}</p>
+                                <h4 class="font-semibold text-gray-800">${sale.customerName}</h4>
+                                <p class="text-sm text-gray-600">${sale.customerPhone}</p>
+                                <p class="text-sm text-gray-500">${sale.customerAddress}</p>
                             </div>
                             <div class="text-right">
-                                <p class="font-semibold text-lg text-gray-800">Rp ${bill.amount.toLocaleString('id-ID')}</p>
-                                <span class="inline-block px-3 py-1 text-sm rounded-full ${getStatusColor(bill.status)}">${getStatusText(bill.status)}</span>
+                                <p class="font-semibold text-lg text-gray-800">Rp ${sale.totalAmount.toLocaleString('id-ID')}</p>
+                                <span class="inline-block px-3 py-1 text-sm rounded-full ${getStatusColor(sale.status)}">${getStatusText(sale.status)}</span>
                             </div>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm text-gray-600">
-                            <div><strong>Jatuh Tempo:</strong> ${new Date(bill.dueDate).toLocaleDateString('id-ID')}</div>
-                            <div><strong>Metode:</strong> ${bill.paymentMethod}</div>
-                            <div><strong>Dibuat:</strong> ${new Date(bill.createdAt).toLocaleDateString('id-ID')}</div>
+                            <div><strong>Produk:</strong> ${sale.productName}</div>
+                            <div><strong>Jumlah:</strong> ${sale.quantity} x Rp ${sale.unitPrice.toLocaleString('id-ID')}</div>
+                            <div><strong>Metode:</strong> ${sale.paymentMethod}</div>
                         </div>
-                        ${bill.officerName ? `<div class="text-sm text-gray-600"><strong>Petugas:</strong> ${bill.officerName}</div>` : ''}
-                        ${bill.description ? `<div class="text-sm text-gray-600"><strong>Keterangan:</strong> ${bill.description}</div>` : ''}
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-600">
+                            <div><strong>Sales:</strong> ${sale.salesPerson || '-'}</div>
+                            <div><strong>Dibuat:</strong> ${new Date(sale.createdAt).toLocaleDateString('id-ID')}</div>
+                        </div>
+                        ${sale.description ? `<div class="text-sm text-gray-600"><strong>Keterangan:</strong> ${sale.description}</div>` : ''}
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-2 sm:space-y-0">
                             <div class="text-xs text-gray-500">
-                                Dibuat oleh: ${bill.createdBy}
-                                ${bill.updatedAt ? `<br>Diperbarui: ${new Date(bill.updatedAt).toLocaleDateString('id-ID')} oleh ${bill.updatedBy}` : ''}
+                                Dibuat oleh: ${sale.createdBy}
+                                ${sale.updatedAt ? `<br>Diperbarui: ${new Date(sale.updatedAt).toLocaleDateString('id-ID')} oleh ${sale.updatedBy}` : ''}
                             </div>
                             <div class="flex space-x-2 w-full sm:w-auto">
-                                <button onclick="editBill(${bill.id})" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors flex-1 sm:flex-none">
+                                <button onclick="editSale(${sale.id})" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm transition-colors flex-1 sm:flex-none">
                                     <i class="fas fa-edit mr-1"></i>Edit
                                 </button>
-                                <button onclick="deleteBill(${bill.id})" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm transition-colors flex-1 sm:flex-none">
+                                <button onclick="deleteSale(${sale.id})" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm transition-colors flex-1 sm:flex-none">
                                     <i class="fas fa-trash mr-1"></i>Hapus
                                 </button>
                             </div>
@@ -1144,21 +1178,21 @@
         }
 
         // Search and filter
-        document.getElementById('searchInput').addEventListener('input', loadBillsHistory);
-        document.getElementById('statusFilter').addEventListener('change', loadBillsHistory);
+        document.getElementById('searchInput').addEventListener('input', loadSalesHistory);
+        document.getElementById('statusFilter').addEventListener('change', loadSalesHistory);
 
         // Reports functions
         function updateReports() {
             const currentMonth = new Date().getMonth();
             const currentYear = new Date().getFullYear();
             
-            const monthlyBills = bills.filter(bill => {
-                const billDate = new Date(bill.createdAt);
-                return billDate.getMonth() === currentMonth && billDate.getFullYear() === currentYear;
+            const monthlySales = sales.filter(sale => {
+                const saleDate = new Date(sale.createdAt);
+                return saleDate.getMonth() === currentMonth && saleDate.getFullYear() === currentYear;
             });
             
-            const totalAmount = monthlyBills.reduce((sum, bill) => sum + bill.amount, 0);
-            const paidAmount = monthlyBills.filter(bill => bill.status === 'paid').reduce((sum, bill) => sum + bill.amount, 0);
+            const totalAmount = monthlySales.reduce((sum, sale) => sum + sale.totalAmount, 0);
+            const paidAmount = monthlySales.filter(sale => sale.status === 'paid').reduce((sum, sale) => sum + sale.totalAmount, 0);
             const unpaidAmount = totalAmount - paidAmount;
             
             document.getElementById('monthlyTotal').textContent = `Rp ${totalAmount.toLocaleString('id-ID')}`;
@@ -1166,50 +1200,54 @@
             document.getElementById('monthlyUnpaid').textContent = `Rp ${unpaidAmount.toLocaleString('id-ID')}`;
             
             // Payment method counts
-            const cashCount = bills.filter(bill => bill.paymentMethod === 'tunai').length;
-            const transferCount = bills.filter(bill => bill.paymentMethod === 'transfer').length;
+            const cashCount = sales.filter(sale => sale.paymentMethod === 'tunai').length;
+            const transferCount = sales.filter(sale => sale.paymentMethod === 'transfer').length;
+            const creditCount = sales.filter(sale => sale.paymentMethod === 'kredit').length;
             
             document.getElementById('cashCount').textContent = cashCount;
             document.getElementById('transferCount').textContent = transferCount;
+            document.getElementById('creditCount').textContent = creditCount;
         }
 
         // Export functions
         document.getElementById('exportExcel').addEventListener('click', function() {
-            const ws = XLSX.utils.json_to_sheet(bills.map(bill => ({
-                'Nama Pelanggan': bill.customerName,
-                'No. Telepon': bill.customerPhone,
-                'Alamat': bill.customerAddress,
-                'Jumlah': bill.amount,
-                'Jatuh Tempo': bill.dueDate,
-                'Metode Pembayaran': bill.paymentMethod,
-                'Status': bill.status,
-                'Nama Petugas': bill.officerName || '',
-                'Keterangan': bill.description || '',
-                'Tanggal Dibuat': new Date(bill.createdAt).toLocaleDateString('id-ID'),
-                'Dibuat Oleh': bill.createdBy
+            const ws = XLSX.utils.json_to_sheet(sales.map(sale => ({
+                'Nama Pembeli': sale.customerName,
+                'No. Telepon': sale.customerPhone,
+                'Alamat': sale.customerAddress,
+                'Nama Produk': sale.productName,
+                'Jumlah': sale.quantity,
+                'Harga Satuan': sale.unitPrice,
+                'Total Harga': sale.totalAmount,
+                'Metode Pembayaran': sale.paymentMethod,
+                'Status': sale.status,
+                'Sales Person': sale.salesPerson || '',
+                'Keterangan': sale.description || '',
+                'Tanggal Dibuat': new Date(sale.createdAt).toLocaleDateString('id-ID'),
+                'Dibuat Oleh': sale.createdBy
             })));
             
             const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, 'Data Tagihan');
-            XLSX.writeFile(wb, `data-tagihan-${new Date().toISOString().split('T')[0]}.xlsx`);
+            XLSX.utils.book_append_sheet(wb, ws, 'Data Penjualan');
+            XLSX.writeFile(wb, `data-penjualan-${new Date().toISOString().split('T')[0]}.xlsx`);
         });
 
         // Export JSON Data for sync - IMPROVED FOR MOBILE
         document.getElementById('exportJSON').addEventListener('click', function() {
             const exportData = {
-                bills: bills,
+                sales: sales,
                 users: users.filter(u => u.id > 2), // Don't export default users
                 exportDate: new Date().toISOString(),
                 exportBy: currentUser.name,
-                exportFrom: 'Sistem Penagihan v2.0',
+                exportFrom: 'Sistem Penjualan v2.0',
                 deviceInfo: navigator.userAgent.includes('Mobile') ? 'Mobile Device' : 'Desktop/Laptop',
-                totalBills: bills.length,
+                totalSales: sales.length,
                 totalUsers: users.filter(u => u.id > 2).length,
                 version: '2.0'
             };
             
             const dataStr = JSON.stringify(exportData, null, 2);
-            const fileName = `sistem-tagihan-sync-${new Date().toISOString().split('T')[0]}-${Date.now()}.json`;
+            const fileName = `sistem-penjualan-sync-${new Date().toISOString().split('T')[0]}-${Date.now()}.json`;
             
             // Check if device is mobile
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -1220,7 +1258,7 @@
             } else {
                 // Desktop: use traditional download
                 downloadFile(dataStr, fileName);
-                showSuccessModal(`✅ Data berhasil di-export!\n\n📊 ${bills.length} tagihan & ${users.filter(u => u.id > 2).length} user\n📱 File siap dibagikan ke device lain\n🔄 Gunakan tombol Import di device tujuan`);
+                showSuccessModal(`✅ Data berhasil di-export!\n\n📊 ${sales.length} penjualan & ${users.filter(u => u.id > 2).length} user\n📱 File siap dibagikan ke device lain\n🔄 Gunakan tombol Import di device tujuan`);
             }
         });
         
@@ -1260,7 +1298,7 @@
                         <p class="text-sm text-gray-600 mt-1">Pilih cara export yang sesuai</p>
                     </div>
                     <div class="p-4 space-y-3">
-                        <button id="mobileDownloadBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg transition-colors">
+                        <button id="mobileDownloadBtn" class="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg transition-colors">
                             <i class="fas fa-download mr-2"></i>Download File JSON
                         </button>
                         <button id="mobileShareBtn" class="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg transition-colors">
@@ -1298,12 +1336,12 @@
                 if (navigator.share) {
                     const file = new File([dataStr], fileName, { type: 'application/json' });
                     navigator.share({
-                        title: 'Data Sistem Penagihan',
-                        text: `Export data tagihan - ${bills.length} tagihan, ${users.filter(u => u.id > 2).length} user`,
+                        title: 'Data Sistem Penjualan',
+                        text: `Export data penjualan - ${sales.length} penjualan, ${users.filter(u => u.id > 2).length} user`,
                         files: [file]
                     }).then(() => {
                         document.body.removeChild(modal);
-                        showSuccessModal(`✅ Data berhasil di-share!\n\n📊 ${bills.length} tagihan & ${users.filter(u => u.id > 2).length} user\n📱 File siap dibagikan via WhatsApp/Email\n🔄 Gunakan tombol Import di device tujuan`);
+                        showSuccessModal(`✅ Data berhasil di-share!\n\n📊 ${sales.length} penjualan & ${users.filter(u => u.id > 2).length} user\n📱 File siap dibagikan via WhatsApp/Email\n🔄 Gunakan tombol Import di device tujuan`);
                     }).catch((error) => {
                         // Fallback to download
                         downloadFile(dataStr, fileName);
@@ -1391,7 +1429,7 @@
                     const importData = JSON.parse(event.target.result);
                     
                     // Validate import data structure
-                    if (!importData.bills || !importData.users || !importData.version) {
+                    if (!importData.sales || !importData.users || !importData.version) {
                         throw new Error('Format file tidak valid');
                     }
                     
@@ -1432,7 +1470,7 @@
                     });
                     
                 } catch (error) {
-                    showSuccessModal(`❌ Error: File PDF tidak valid atau rusak.\n\n🔍 Pastikan file PDF berisi data tagihan yang dapat dibaca.\n\n📄 Format yang didukung: .pdf\n\n⚠️ Error: ${error.message}`);
+                    showSuccessModal(`❌ Error: File PDF tidak valid atau rusak.\n\n🔍 Pastikan file PDF berisi data penjualan yang dapat dibaca.\n\n📄 Format yang didukung: .pdf\n\n⚠️ Error: ${error.message}`);
                 }
             };
             reader.readAsArrayBuffer(file);
@@ -1464,40 +1502,7 @@
                     showExcelImportConfirmation(convertedData);
                     
                 } catch (error) {
-                    showSuccessModal(`❌ Error: File Excel tidak valid atau rusak.\n\n🔍 Pastikan file Excel berisi data tagihan dengan kolom yang sesuai.\n\n📄 Format yang didukung: .xlsx, .xls\n\n⚠️ Error: ${error.message}`);
-                }
-            };
-            reader.readAsArrayBuffer(file);
-            
-            // Reset file input
-            e.target.value = '';
-        });
-
-        // PDF Import Handler
-        document.getElementById('importPDFFile').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            
-            // Show loading message
-            showSuccessModal('📄 Sedang memproses file PDF...\n\n🔍 Mengekstrak teks dengan OCR\n⏳ Mohon tunggu sebentar');
-            
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                try {
-                    const typedArray = new Uint8Array(event.target.result);
-                    
-                    // Configure PDF.js
-                    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-                    
-                    // Load PDF
-                    pdfjsLib.getDocument(typedArray).promise.then(function(pdf) {
-                        extractTextFromPDF(pdf, file.name);
-                    }).catch(function(error) {
-                        throw new Error('PDF tidak dapat dibaca atau rusak');
-                    });
-                    
-                } catch (error) {
-                    showSuccessModal(`❌ Error: File PDF tidak valid atau rusak.\n\n🔍 Pastikan file PDF berisi data tagihan yang dapat dibaca.\n\n📄 Format yang didukung: .pdf\n\n⚠️ Error: ${error.message}`);
+                    showSuccessModal(`❌ Error: File Excel tidak valid atau rusak.\n\n🔍 Pastikan file Excel berisi data penjualan dengan kolom yang sesuai.\n\n📄 Format yang didukung: .xlsx, .xls\n\n⚠️ Error: ${error.message}`);
                 }
             };
             reader.readAsArrayBuffer(file);
@@ -1531,7 +1536,7 @@
 
         function parsePDFTextToData(text, fileName) {
             const lines = text.split('\n').filter(line => line.trim().length > 0);
-            const convertedBills = [];
+            const convertedSales = [];
             let successCount = 0;
             let errorCount = 0;
             const errors = [];
@@ -1539,13 +1544,13 @@
             // Smart parsing patterns for different PDF formats
             const patterns = {
                 // Pattern 1: Table format with clear separators
-                tablePattern: /(.+?)\s+(\d{10,15})\s+(.+?)\s+(Rp\s*[\d,\.]+|\d+)\s+(pending|paid|overdue|lunas|belum lunas)\s*(.+)?/gi,
+                tablePattern: /(.+?)\s+(\d{10,15})\s+(.+?)\s+(Rp\s*[\d,\.]+|\d+)\s+(hutang|paid|overdue|lunas|belum lunas)\s*(.+)?/gi,
                 
                 // Pattern 2: Line by line format
-                linePattern: /nama[:\s]*(.+?)[\s\n]+(?:telepon|phone|hp)[:\s]*(\d{10,15})[\s\n]+(?:alamat|address)[:\s]*(.+?)[\s\n]+(?:jumlah|amount|total)[:\s]*(Rp\s*[\d,\.]+|\d+)[\s\n]+(?:status)[:\s]*(pending|paid|overdue|lunas|belum lunas)/gi,
+                linePattern: /nama[:\s]*(.+?)[\s\n]+(?:telepon|phone|hp)[:\s]*(\d{10,15})[\s\n]+(?:produk|product)[:\s]*(.+?)[\s\n]+(?:jumlah|amount|total)[:\s]*(Rp\s*[\d,\.]+|\d+)[\s\n]+(?:status)[:\s]*(hutang|paid|overdue|lunas|belum lunas)/gi,
                 
                 // Pattern 3: Structured format with labels
-                structuredPattern: /(?:nama pelanggan|customer name)[:\s]*(.+?)[\s\n]+(?:no\.?\s*telepon|phone)[:\s]*(\d{10,15})[\s\n]+(?:alamat|address)[:\s]*(.+?)[\s\n]+(?:jumlah tagihan|amount)[:\s]*(Rp\s*[\d,\.]+|\d+)[\s\n]+(?:status)[:\s]*(pending|paid|overdue|lunas|belum lunas)/gi
+                structuredPattern: /(?:nama pembeli|customer name)[:\s]*(.+?)[\s\n]+(?:no\.?\s*telepon|phone)[:\s]*(\d{10,15})[\s\n]+(?:produk|product)[:\s]*(.+?)[\s\n]+(?:total harga|amount)[:\s]*(Rp\s*[\d,\.]+|\d+)[\s\n]+(?:status)[:\s]*(hutang|paid|overdue|lunas|belum lunas)/gi
             };
             
             let matchFound = false;
@@ -1559,9 +1564,9 @@
                     
                     matches.forEach((match, index) => {
                         try {
-                            const bill = createBillFromPDFMatch(match, fileName, index, patternName);
-                            if (bill) {
-                                convertedBills.push(bill);
+                            const sale = createSaleFromPDFMatch(match, fileName, index, patternName);
+                            if (sale) {
+                                convertedSales.push(sale);
                                 successCount++;
                             }
                         } catch (error) {
@@ -1577,14 +1582,14 @@
             // If no patterns match, try manual line-by-line parsing
             if (!matchFound) {
                 const manualData = parseManualPDFLines(lines, fileName);
-                convertedBills.push(...manualData.bills);
+                convertedSales.push(...manualData.sales);
                 successCount = manualData.successCount;
                 errorCount = manualData.errorCount;
                 errors.push(...manualData.errors);
             }
             
             return {
-                bills: convertedBills,
+                sales: convertedSales,
                 fileName: fileName,
                 totalLines: lines.length,
                 successCount: successCount,
@@ -1596,32 +1601,34 @@
             };
         }
 
-        function createBillFromPDFMatch(match, fileName, index, patternName) {
-            const [, name, phone, address, amount, status, description] = match;
+        function createSaleFromPDFMatch(match, fileName, index, patternName) {
+            const [, name, phone, product, amount, status, description] = match;
             
             // Clean and validate data
             const cleanName = name?.trim().replace(/[^\w\s]/g, '');
             const cleanPhone = phone?.replace(/\D/g, '');
-            const cleanAddress = address?.trim();
+            const cleanProduct = product?.trim();
             const cleanAmount = parseFloat(amount?.replace(/[^\d]/g, '') || '0');
             const cleanStatus = normalizeStatus(status?.toLowerCase());
             const cleanDescription = description?.trim() || `Imported from PDF: ${fileName}`;
             
-            if (!cleanName || !cleanPhone || cleanAmount <= 0) {
-                throw new Error(`Missing required data (Name: ${cleanName}, Phone: ${cleanPhone}, Amount: ${cleanAmount})`);
+            if (!cleanName || !cleanPhone || !cleanProduct || cleanAmount <= 0) {
+                throw new Error(`Missing required data (Name: ${cleanName}, Phone: ${cleanPhone}, Product: ${cleanProduct}, Amount: ${cleanAmount})`);
             }
             
             return {
                 id: Date.now() + Math.random() + index,
                 customerName: cleanName,
                 customerPhone: cleanPhone,
-                customerAddress: cleanAddress || 'Alamat tidak tersedia',
-                amount: cleanAmount,
-                dueDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 30 days from now
+                customerAddress: 'Alamat tidak tersedia',
+                productName: cleanProduct,
+                quantity: 1, // Default
+                unitPrice: cleanAmount,
+                totalAmount: cleanAmount,
                 paymentMethod: 'tunai', // Default
                 status: cleanStatus,
                 description: cleanDescription,
-                officerName: currentUser.name,
+                salesPerson: currentUser.name,
                 createdAt: new Date().toISOString(),
                 createdBy: `PDF Import by ${currentUser.name}`,
                 importedAt: new Date().toISOString(),
@@ -1634,7 +1641,7 @@
         }
 
         function parseManualPDFLines(lines, fileName) {
-            const bills = [];
+            const salesData = [];
             let successCount = 0;
             let errorCount = 0;
             const errors = [];
@@ -1659,6 +1666,13 @@
                     currentRecord.phone = phoneMatch[1];
                 }
                 
+                // Look for products
+                if (!currentRecord.product && line.length > 3 && !phoneMatch && !/^rp/i.test(line)) {
+                    if (lowerLine.includes('produk') || lowerLine.includes('barang')) {
+                        currentRecord.product = line.replace(/produk[:\s]*/gi, '').trim();
+                    }
+                }
+                
                 // Look for amounts
                 const amountMatch = line.match(/(?:rp\s*)?(\d{1,3}(?:[,\.]\d{3})*(?:[,\.]\d{2})?)/i);
                 if (amountMatch && !currentRecord.amount) {
@@ -1668,8 +1682,8 @@
                 // Look for status
                 if (lowerLine.includes('lunas') || lowerLine.includes('paid')) {
                     currentRecord.status = 'paid';
-                } else if (lowerLine.includes('pending')) {
-                    currentRecord.status = 'pending';
+                } else if (lowerLine.includes('hutang')) {
+                    currentRecord.status = 'hutang';
                 } else if (lowerLine.includes('belum') || lowerLine.includes('overdue')) {
                     currentRecord.status = 'overdue';
                 }
@@ -1677,17 +1691,19 @@
                 // If we have enough data, save the record
                 if (currentRecord.name && currentRecord.phone && currentRecord.amount) {
                     try {
-                        const bill = {
+                        const sale = {
                             id: Date.now() + Math.random() + successCount,
                             customerName: currentRecord.name,
                             customerPhone: currentRecord.phone,
                             customerAddress: 'Alamat dari PDF',
-                            amount: currentRecord.amount,
-                            dueDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                            productName: currentRecord.product || 'Produk dari PDF',
+                            quantity: 1,
+                            unitPrice: currentRecord.amount,
+                            totalAmount: currentRecord.amount,
                             paymentMethod: 'tunai',
-                            status: currentRecord.status || 'pending',
+                            status: currentRecord.status || 'hutang',
                             description: `Manual parsing from PDF: ${fileName}`,
-                            officerName: currentUser.name,
+                            salesPerson: currentUser.name,
                             createdAt: new Date().toISOString(),
                             createdBy: `PDF Manual Import by ${currentUser.name}`,
                             importedAt: new Date().toISOString(),
@@ -1697,7 +1713,7 @@
                             pdfLineNumber: index + 1
                         };
                         
-                        bills.push(bill);
+                        salesData.push(sale);
                         successCount++;
                         currentRecord = {}; // Reset for next record
                         
@@ -1709,23 +1725,23 @@
                 }
             });
             
-            return { bills, successCount, errorCount, errors };
+            return { sales: salesData, successCount, errorCount, errors };
         }
 
         function normalizeStatus(status) {
-            if (!status) return 'pending';
+            if (!status) return 'hutang';
             
             if (status.includes('lunas') || status.includes('paid')) {
                 return 'paid';
             } else if (status.includes('belum') || status.includes('overdue')) {
                 return 'overdue';
             } else {
-                return 'pending';
+                return 'hutang';
             }
         }
 
         function showPDFImportConfirmation(parsedData) {
-            const currentBillsCount = bills.length;
+            const currentSalesCount = sales.length;
             
             let confirmMessage = `📄 KONFIRMASI IMPORT PDF\n\n`;
             confirmMessage += `📁 File: ${parsedData.fileName}\n`;
@@ -1744,8 +1760,8 @@
                 confirmMessage += `\n`;
             }
             
-            confirmMessage += `📊 Data saat ini: ${currentBillsCount} tagihan\n`;
-            confirmMessage += `📈 Setelah import: ${currentBillsCount + parsedData.successCount} tagihan\n\n`;
+            confirmMessage += `📊 Data saat ini: ${currentSalesCount} penjualan\n`;
+            confirmMessage += `📈 Setelah import: ${currentSalesCount + parsedData.successCount} penjualan\n\n`;
             confirmMessage += `🔍 Preview teks PDF:\n"${parsedData.extractedText}"\n\n`;
             confirmMessage += `✅ Proses import akan:\n`;
             confirmMessage += `• Menambahkan ${parsedData.successCount} data baru\n`;
@@ -1762,24 +1778,24 @@
             const syncTimestamp = new Date().toISOString();
             const syncId = `pdf_import_${Date.now()}`;
             
-            // Add parsed bills to system
-            parsedData.bills.forEach(bill => {
+            // Add parsed sales to system
+            parsedData.sales.forEach(sale => {
                 // Check for potential duplicates
-                const duplicate = bills.find(b => 
-                    b.customerName === bill.customerName && 
-                    b.customerPhone === bill.customerPhone &&
-                    Math.abs(b.amount - bill.amount) < 1000
+                const duplicate = sales.find(s => 
+                    s.customerName === sale.customerName && 
+                    s.customerPhone === sale.customerPhone &&
+                    Math.abs(s.totalAmount - sale.totalAmount) < 1000
                 );
                 
                 if (!duplicate) {
-                    bill.syncId = syncId;
-                    bill.syncTimestamp = syncTimestamp;
-                    bills.push(bill);
+                    sale.syncId = syncId;
+                    sale.syncTimestamp = syncTimestamp;
+                    sales.push(sale);
                 }
             });
             
             // Save to localStorage
-            localStorage.setItem('bills', JSON.stringify(bills));
+            localStorage.setItem('sales', JSON.stringify(sales));
             
             // Create import report
             const importReport = {
@@ -1798,10 +1814,10 @@
             };
             
             // Save import history
-            let syncHistory = JSON.parse(localStorage.getItem('syncHistory')) || [];
+            let syncHistory = JSON.parse(localStorage.getItem('syncHistory_sales')) || [];
             syncHistory.push(importReport);
             if (syncHistory.length > 10) syncHistory = syncHistory.slice(-10);
-            localStorage.setItem('syncHistory', JSON.stringify(syncHistory));
+            localStorage.setItem('syncHistory_sales', JSON.stringify(syncHistory));
             
             // Show success message
             const syncDetails = `
@@ -1827,13 +1843,13 @@
             
             // Refresh displays
             updateDashboard();
-            loadBillsHistory();
+            loadSalesHistory();
             
             showSuccessModal(`🎉 Import PDF berhasil!\n\n📊 ${parsedData.successCount} data berhasil diimport\n❌ ${parsedData.errorCount} data error\n📁 File: ${parsedData.fileName}\n\n🔍 Data berhasil diekstrak dengan OCR dan AI parsing!`);
         }
 
         function convertExcelToSystemFormat(excelData, fileName) {
-            const convertedBills = [];
+            const convertedSales = [];
             let successCount = 0;
             let errorCount = 0;
             const errors = [];
@@ -1841,17 +1857,19 @@
             excelData.forEach((row, index) => {
                 try {
                     // Map Excel columns to system format (flexible column mapping)
-                    const bill = {
+                    const sale = {
                         id: Date.now() + Math.random() + index,
-                        customerName: row['Nama Pelanggan'] || row['Nama'] || row['Customer Name'] || row['Name'] || '',
+                        customerName: row['Nama Pembeli'] || row['Nama'] || row['Customer Name'] || row['Name'] || '',
                         customerPhone: (row['No. Telepon'] || row['Telepon'] || row['Phone'] || row['No Telepon'] || '').toString(),
                         customerAddress: row['Alamat'] || row['Address'] || '',
-                        amount: parseFloat(row['Jumlah'] || row['Amount'] || row['Total'] || 0),
-                        dueDate: convertExcelDate(row['Jatuh Tempo'] || row['Due Date'] || row['Tanggal Jatuh Tempo']),
+                        productName: row['Nama Produk'] || row['Produk'] || row['Product'] || row['Product Name'] || '',
+                        quantity: parseInt(row['Jumlah'] || row['Quantity'] || row['Qty'] || 1),
+                        unitPrice: parseFloat(row['Harga Satuan'] || row['Unit Price'] || row['Price'] || 0),
+                        totalAmount: parseFloat(row['Total Harga'] || row['Total'] || row['Amount'] || 0),
                         paymentMethod: (row['Metode Pembayaran'] || row['Metode'] || row['Payment Method'] || 'tunai').toLowerCase(),
-                        status: convertExcelStatus(row['Status'] || 'pending'),
+                        status: convertExcelStatus(row['Status'] || 'hutang'),
                         description: row['Keterangan'] || row['Description'] || row['Notes'] || `Imported from Excel: ${fileName}`,
-                        officerName: row['Nama Petugas'] || row['Petugas'] || row['Officer'] || currentUser.name,
+                        salesPerson: row['Sales Person'] || row['Sales'] || row['Petugas'] || currentUser.name,
                         createdAt: new Date().toISOString(),
                         createdBy: `Excel Import by ${currentUser.name}`,
                         importedAt: new Date().toISOString(),
@@ -1862,21 +1880,21 @@
                     };
                     
                     // Validate required fields
-                    if (!bill.customerName || !bill.customerPhone || !bill.amount || bill.amount <= 0) {
-                        throw new Error(`Row ${index + 2}: Missing required data (Name, Phone, or Amount)`);
+                    if (!sale.customerName || !sale.customerPhone || !sale.productName || !sale.totalAmount || sale.totalAmount <= 0) {
+                        throw new Error(`Row ${index + 2}: Missing required data (Name, Phone, Product, or Amount)`);
                     }
                     
                     // Normalize payment method
-                    if (!['tunai', 'transfer'].includes(bill.paymentMethod)) {
-                        bill.paymentMethod = 'tunai';
+                    if (!['tunai', 'transfer', 'kredit'].includes(sale.paymentMethod)) {
+                        sale.paymentMethod = 'tunai';
                     }
                     
                     // Normalize status
-                    if (!['pending', 'paid', 'overdue'].includes(bill.status)) {
-                        bill.status = 'pending';
+                    if (!['hutang', 'paid', 'overdue'].includes(sale.status)) {
+                        sale.status = 'hutang';
                     }
                     
-                    convertedBills.push(bill);
+                    convertedSales.push(sale);
                     successCount++;
                     
                 } catch (error) {
@@ -1886,7 +1904,7 @@
             });
             
             return {
-                bills: convertedBills,
+                sales: convertedSales,
                 fileName: fileName,
                 totalRows: excelData.length,
                 successCount: successCount,
@@ -1897,29 +1915,8 @@
             };
         }
 
-        function convertExcelDate(dateValue) {
-            if (!dateValue) return new Date().toISOString().split('T')[0];
-            
-            // Handle Excel date formats
-            if (typeof dateValue === 'number') {
-                // Excel serial date
-                const excelEpoch = new Date(1900, 0, 1);
-                const date = new Date(excelEpoch.getTime() + (dateValue - 2) * 24 * 60 * 60 * 1000);
-                return date.toISOString().split('T')[0];
-            } else if (typeof dateValue === 'string') {
-                // Try to parse string date
-                const date = new Date(dateValue);
-                if (!isNaN(date.getTime())) {
-                    return date.toISOString().split('T')[0];
-                }
-            }
-            
-            // Default to today if can't parse
-            return new Date().toISOString().split('T')[0];
-        }
-
         function convertExcelStatus(statusValue) {
-            if (!statusValue) return 'pending';
+            if (!statusValue) return 'hutang';
             
             const status = statusValue.toString().toLowerCase();
             if (status.includes('lunas') || status.includes('paid') || status.includes('bayar')) {
@@ -1927,12 +1924,12 @@
             } else if (status.includes('belum') || status.includes('overdue') || status.includes('terlambat')) {
                 return 'overdue';
             } else {
-                return 'pending';
+                return 'hutang';
             }
         }
 
         function showExcelImportConfirmation(convertedData) {
-            const currentBillsCount = bills.length;
+            const currentSalesCount = sales.length;
             
             let confirmMessage = `📊 KONFIRMASI IMPORT EXCEL\n\n`;
             confirmMessage += `📁 File: ${convertedData.fileName}\n`;
@@ -1951,8 +1948,8 @@
                 confirmMessage += `\n`;
             }
             
-            confirmMessage += `📊 Data saat ini: ${currentBillsCount} tagihan\n`;
-            confirmMessage += `📈 Setelah import: ${currentBillsCount + convertedData.successCount} tagihan\n\n`;
+            confirmMessage += `📊 Data saat ini: ${currentSalesCount} penjualan\n`;
+            confirmMessage += `📈 Setelah import: ${currentSalesCount + convertedData.successCount} penjualan\n\n`;
             confirmMessage += `✅ Proses import akan:\n`;
             confirmMessage += `• Menambahkan ${convertedData.successCount} data baru\n`;
             confirmMessage += `• Mencatat sumber import dari Excel\n`;
@@ -1968,24 +1965,24 @@
             const syncTimestamp = new Date().toISOString();
             const syncId = `excel_import_${Date.now()}`;
             
-            // Add converted bills to system
-            convertedData.bills.forEach(bill => {
+            // Add converted sales to system
+            convertedData.sales.forEach(sale => {
                 // Check for potential duplicates
-                const duplicate = bills.find(b => 
-                    b.customerName === bill.customerName && 
-                    b.customerPhone === bill.customerPhone &&
-                    Math.abs(b.amount - bill.amount) < 1000
+                const duplicate = sales.find(s => 
+                    s.customerName === sale.customerName && 
+                    s.customerPhone === sale.customerPhone &&
+                    Math.abs(s.totalAmount - sale.totalAmount) < 1000
                 );
                 
                 if (!duplicate) {
-                    bill.syncId = syncId;
-                    bill.syncTimestamp = syncTimestamp;
-                    bills.push(bill);
+                    sale.syncId = syncId;
+                    sale.syncTimestamp = syncTimestamp;
+                    sales.push(sale);
                 }
             });
             
             // Save to localStorage
-            localStorage.setItem('bills', JSON.stringify(bills));
+            localStorage.setItem('sales', JSON.stringify(sales));
             
             // Create import report
             const importReport = {
@@ -2003,10 +2000,10 @@
             };
             
             // Save import history
-            let syncHistory = JSON.parse(localStorage.getItem('syncHistory')) || [];
+            let syncHistory = JSON.parse(localStorage.getItem('syncHistory_sales')) || [];
             syncHistory.push(importReport);
             if (syncHistory.length > 10) syncHistory = syncHistory.slice(-10);
-            localStorage.setItem('syncHistory', JSON.stringify(syncHistory));
+            localStorage.setItem('syncHistory_sales', JSON.stringify(syncHistory));
             
             // Show success message
             const syncDetails = `
@@ -2031,14 +2028,14 @@
             
             // Refresh displays
             updateDashboard();
-            loadBillsHistory();
+            loadSalesHistory();
             
             showSuccessModal(`🎉 Import Excel berhasil!\n\n📊 ${convertedData.successCount} data berhasil diimport\n❌ ${convertedData.errorCount} data error\n📁 File: ${convertedData.fileName}\n\n💡 Data Excel telah dikonversi ke sistem dengan tracking lengkap!`);
         }
 
         function showImportConfirmation(importData) {
-            const currentBillsCount = bills.length;
-            const importBillsCount = importData.bills.length;
+            const currentSalesCount = sales.length;
+            const importSalesCount = importData.sales.length;
             const currentUsersCount = users.filter(u => u.id > 2).length;
             const importUsersCount = importData.users.length;
             
@@ -2047,13 +2044,13 @@
             
             const confirmMessage = `🔄 KONFIRMASI SINKRONISASI DATA\n\n` +
                 `📥 Data yang akan diimport:\n` +
-                `• ${importBillsCount} data tagihan\n` +
+                `• ${importSalesCount} data penjualan\n` +
                 `• ${importUsersCount} data user\n` +
                 `• Export oleh: ${importData.exportBy}\n` +
                 `• Dari device: ${deviceInfo}\n` +
                 `• Tanggal export: ${exportDate}\n\n` +
                 `📊 Data saat ini:\n` +
-                `• ${currentBillsCount} data tagihan\n` +
+                `• ${currentSalesCount} data penjualan\n` +
                 `• ${currentUsersCount} data user\n\n` +
                 `✅ Proses sinkronisasi akan:\n` +
                 `• Menggabungkan data (tidak menghapus yang lama)\n` +
@@ -2068,48 +2065,48 @@
         }
 
         function performDataImport(importData) {
-            let newBillsCount = 0;
+            let newSalesCount = 0;
             let newUsersCount = 0;
-            let updatedBillsCount = 0;
+            let updatedSalesCount = 0;
             let updatedUsersCount = 0;
-            let skippedBillsCount = 0;
+            let skippedSalesCount = 0;
             
             const syncTimestamp = new Date().toISOString();
             const syncId = `sync_${Date.now()}`;
             
-            // Import bills - merge by ID, add new ones
-            importData.bills.forEach(importBill => {
-                const existingBillIndex = bills.findIndex(b => b.id === importBill.id);
-                if (existingBillIndex !== -1) {
-                    // Update existing bill with sync info
-                    bills[existingBillIndex] = {
-                        ...importBill,
+            // Import sales - merge by ID, add new ones
+            importData.sales.forEach(importSale => {
+                const existingSaleIndex = sales.findIndex(s => s.id === importSale.id);
+                if (existingSaleIndex !== -1) {
+                    // Update existing sale with sync info
+                    sales[existingSaleIndex] = {
+                        ...importSale,
                         lastSyncAt: syncTimestamp,
                         lastSyncBy: currentUser.name,
                         lastSyncId: syncId,
                         syncSource: importData.exportBy || 'Unknown'
                     };
-                    updatedBillsCount++;
+                    updatedSalesCount++;
                 } else {
                     // Check for potential duplicates by name and phone
-                    const duplicate = bills.find(b => 
-                        b.customerName === importBill.customerName && 
-                        b.customerPhone === importBill.customerPhone &&
-                        Math.abs(b.amount - importBill.amount) < 1000 // Allow small amount differences
+                    const duplicate = sales.find(s => 
+                        s.customerName === importSale.customerName && 
+                        s.customerPhone === importSale.customerPhone &&
+                        Math.abs(s.totalAmount - importSale.totalAmount) < 1000 // Allow small amount differences
                     );
                     
                     if (duplicate) {
-                        skippedBillsCount++;
+                        skippedSalesCount++;
                     } else {
-                        // Add new bill with sync info
-                        bills.push({
-                            ...importBill,
+                        // Add new sale with sync info
+                        sales.push({
+                            ...importSale,
                             importedAt: syncTimestamp,
                             importedBy: currentUser.name,
                             syncId: syncId,
                             syncSource: importData.exportBy || 'Unknown'
                         });
-                        newBillsCount++;
+                        newSalesCount++;
                     }
                 }
             });
@@ -2141,8 +2138,8 @@
             });
             
             // Save to localStorage
-            localStorage.setItem('bills', JSON.stringify(bills));
-            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('sales', JSON.stringify(sales));
+            localStorage.setItem('users_sales', JSON.stringify(users));
             
             // Create detailed sync report
             const syncReport = {
@@ -2153,28 +2150,28 @@
                 sourceUser: importData.exportBy,
                 sourceExportDate: importData.exportDate,
                 results: {
-                    newBills: newBillsCount,
-                    updatedBills: updatedBillsCount,
-                    skippedBills: skippedBillsCount,
+                    newSales: newSalesCount,
+                    updatedSales: updatedSalesCount,
+                    skippedSales: skippedSalesCount,
                     newUsers: newUsersCount,
                     updatedUsers: updatedUsersCount,
-                    totalProcessed: newBillsCount + updatedBillsCount + newUsersCount + updatedUsersCount
+                    totalProcessed: newSalesCount + updatedSalesCount + newUsersCount + updatedUsersCount
                 }
             };
             
             // Save sync history
-            let syncHistory = JSON.parse(localStorage.getItem('syncHistory')) || [];
+            let syncHistory = JSON.parse(localStorage.getItem('syncHistory_sales')) || [];
             syncHistory.push(syncReport);
             if (syncHistory.length > 10) syncHistory = syncHistory.slice(-10); // Keep last 10 syncs
-            localStorage.setItem('syncHistory', JSON.stringify(syncHistory));
+            localStorage.setItem('syncHistory_sales', JSON.stringify(syncHistory));
             
             // Show detailed sync status
             const syncDetails = `
                 🎉 <strong>SINKRONISASI BERHASIL!</strong><br><br>
                 📊 <strong>Hasil Import:</strong><br>
-                • ✅ ${newBillsCount} tagihan baru ditambahkan<br>
-                • 🔄 ${updatedBillsCount} tagihan diperbarui<br>
-                • ⚠️ ${skippedBillsCount} tagihan duplikat dilewati<br>
+                • ✅ ${newSalesCount} penjualan baru ditambahkan<br>
+                • 🔄 ${updatedSalesCount} penjualan diperbarui<br>
+                • ⚠️ ${skippedSalesCount} penjualan duplikat dilewati<br>
                 • 👤 ${newUsersCount} user baru ditambahkan<br>
                 • 🔄 ${updatedUsersCount} user diperbarui<br><br>
                 📱 <strong>Sumber:</strong> ${importData.exportBy} (${importData.deviceInfo || 'Unknown Device'})<br>
@@ -2192,13 +2189,13 @@
             
             // Refresh all data displays
             updateDashboard();
-            loadBillsHistory();
+            loadSalesHistory();
             if (currentUser.role === 'admin') {
                 loadUsersList();
             }
             
-            const totalSynced = newBillsCount + updatedBillsCount + newUsersCount + updatedUsersCount;
-            showSuccessModal(`🎉 Sinkronisasi berhasil!\n\n📊 Total ${totalSynced} data berhasil disinkronisasi\n✅ ${newBillsCount + newUsersCount} data baru\n🔄 ${updatedBillsCount + updatedUsersCount} data diperbarui\n⚠️ ${skippedBillsCount} duplikat dilewati\n\n🔍 Lihat detail di panel Sync Status`);
+            const totalSynced = newSalesCount + updatedSalesCount + newUsersCount + updatedUsersCount;
+            showSuccessModal(`🎉 Sinkronisasi berhasil!\n\n📊 Total ${totalSynced} data berhasil disinkronisasi\n✅ ${newSalesCount + newUsersCount} data baru\n🔄 ${updatedSalesCount + updatedUsersCount} data diperbarui\n⚠️ ${skippedSalesCount} duplikat dilewati\n\n🔍 Lihat detail di panel Sync Status`);
         }
 
         document.getElementById('exportPDF').addEventListener('click', function() {
@@ -2207,13 +2204,13 @@
             
             // Title
             doc.setFontSize(16);
-            doc.text('LAPORAN DATA TAGIHAN', 105, 20, { align: 'center' });
+            doc.text('LAPORAN DATA PENJUALAN', 105, 20, { align: 'center' });
             doc.setFontSize(12);
             doc.text(`Tanggal Export: ${new Date().toLocaleDateString('id-ID')}`, 105, 30, { align: 'center' });
             
             // Table headers
-            const headers = ['No', 'Nama', 'Telepon', 'Jumlah', 'Status', 'Metode', 'Petugas'];
-            const colWidths = [15, 35, 25, 25, 20, 20, 30];
+            const headers = ['No', 'Nama', 'Telepon', 'Produk', 'Total', 'Status', 'Sales'];
+            const colWidths = [15, 30, 25, 25, 25, 20, 25];
             let xPos = 20;
             let yPos = 50;
             
@@ -2231,7 +2228,7 @@
             
             // Draw data rows
             doc.setFont(undefined, 'normal');
-            bills.forEach((bill, index) => {
+            sales.forEach((sale, index) => {
                 if (yPos > 270) {
                     doc.addPage();
                     yPos = 20;
@@ -2251,12 +2248,12 @@
                 xPos = 20;
                 const rowData = [
                     (index + 1).toString(),
-                    bill.customerName.substring(0, 15),
-                    bill.customerPhone,
-                    `Rp ${(bill.amount / 1000).toFixed(0)}K`,
-                    getStatusText(bill.status),
-                    bill.paymentMethod,
-                    (bill.officerName || '-').substring(0, 12)
+                    sale.customerName.substring(0, 12),
+                    sale.customerPhone,
+                    sale.productName.substring(0, 10),
+                    `Rp ${(sale.totalAmount / 1000).toFixed(0)}K`,
+                    getStatusText(sale.status),
+                    (sale.salesPerson || '-').substring(0, 10)
                 ];
                 
                 rowData.forEach((data, i) => {
@@ -2272,10 +2269,10 @@
             doc.line(20, yPos, 190, yPos);
             yPos += 10;
             doc.setFont(undefined, 'bold');
-            doc.text(`Total Data: ${bills.length}`, 20, yPos);
-            doc.text(`Total Nilai: Rp ${bills.reduce((sum, bill) => sum + bill.amount, 0).toLocaleString('id-ID')}`, 20, yPos + 10);
+            doc.text(`Total Data: ${sales.length}`, 20, yPos);
+            doc.text(`Total Nilai: Rp ${sales.reduce((sum, sale) => sum + sale.totalAmount, 0).toLocaleString('id-ID')}`, 20, yPos + 10);
             
-            doc.save(`laporan-tagihan-${new Date().toISOString().split('T')[0]}.pdf`);
+            doc.save(`laporan-penjualan-${new Date().toISOString().split('T')[0]}.pdf`);
         });
 
         // User Management Functions
@@ -2291,7 +2288,7 @@
                                 <h4 class="font-semibold text-gray-800">${user.name}</h4>
                                 <p class="text-sm text-gray-600">${user.email}</p>
                                 <div class="flex flex-wrap gap-2 mt-1">
-                                    <span class="inline-block px-2 py-1 text-xs rounded-full ${user.role === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'}">${user.role.toUpperCase()}</span>
+                                    <span class="inline-block px-2 py-1 text-xs rounded-full ${user.role === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-green-100 text-green-800'}">${user.role.toUpperCase()}</span>
                                     ${user.importedAt ? '<span class="inline-block px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">SYNCED</span>' : ''}
                                 </div>
                                 ${user.lastSyncAt ? `<p class="text-xs text-gray-500 mt-1">Last sync: ${new Date(user.lastSyncAt).toLocaleDateString('id-ID')}</p>` : ''}
@@ -2341,7 +2338,7 @@
             };
             
             users.push(newUser);
-            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('users_sales', JSON.stringify(users));
             
             showSuccessModal('User berhasil ditambahkan!');
             loadUsersList();
@@ -2356,7 +2353,7 @@
             }
             
             users = users.filter(u => u.id !== id);
-            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('users_sales', JSON.stringify(users));
             showSuccessModal('User berhasil dihapus!');
             loadUsersList();
         }
@@ -2364,16 +2361,16 @@
         // Generate Data Functions
         document.getElementById('generateDataBtn').addEventListener('click', function() {
             const count = parseInt(document.getElementById('generateCount').value);
-            const includePending = document.getElementById('genPending').checked;
+            const includeDebt = document.getElementById('genDebt').checked;
             const includePaid = document.getElementById('genPaid').checked;
             const includeOverdue = document.getElementById('genOverdue').checked;
             
-            if (!includePending && !includePaid && !includeOverdue) {
+            if (!includeDebt && !includePaid && !includeOverdue) {
                 showSuccessModal('Pilih minimal satu status untuk generate data!');
                 return;
             }
             
-            generateDummyData(count, { includePending, includePaid, includeOverdue });
+            generateDummyData(count, { includeDebt, includePaid, includeOverdue });
         });
 
         function generateDummyData(count, options) {
@@ -2394,18 +2391,24 @@
                 'Jl. Gatot Subroto No. 321, Medan', 'Jl. Ahmad Yani No. 654, Semarang', 'Jl. Diponegoro No. 987, Yogyakarta',
                 'Jl. Veteran No. 147, Malang', 'Jl. Pahlawan No. 258, Denpasar', 'Jl. Pemuda No. 369, Palembang'
             ];
+
+            const products = [
+                'Laptop ASUS', 'HP Samsung Galaxy', 'Sepatu Nike', 'Tas Eiger', 'Jam Tangan Casio',
+                'Kamera Canon', 'Headphone Sony', 'Mouse Logitech', 'Keyboard Mechanical', 'Monitor LG',
+                'Printer Epson', 'Speaker JBL', 'Power Bank Xiaomi', 'Charger Original', 'Casing HP'
+            ];
             
-            const officers = [
+            const salesPersons = [
                 'Mario Haulussy', 'Macho Haulussy', 'Ryan Pattiwael', 'Stevy Wuarlela',
                 'Stevian Lauluw', 'Gilberd', 'Glen Tansora', 'Glen Ohman'
             ];
             
             const statuses = [];
-            if (options.includePending) statuses.push('pending');
+            if (options.includeDebt) statuses.push('hutang');
             if (options.includePaid) statuses.push('paid');
             if (options.includeOverdue) statuses.push('overdue');
             
-            const methods = ['tunai', 'transfer'];
+            const methods = ['tunai', 'transfer', 'kredit'];
             
             let generated = 0;
             const interval = setInterval(() => {
@@ -2413,9 +2416,9 @@
                     clearInterval(interval);
                     progress.classList.add('hidden');
                     progressBar.style.width = '0%';
-                    showSuccessModal(`Berhasil generate ${count} data tagihan!`);
+                    showSuccessModal(`Berhasil generate ${count} data penjualan!`);
                     updateDashboard();
-                    loadBillsHistory();
+                    loadSalesHistory();
                     return;
                 }
                 
@@ -2424,30 +2427,35 @@
                 for (let i = 0; i < batchSize; i++) {
                     const randomName = names[Math.floor(Math.random() * names.length)];
                     const randomAddress = addresses[Math.floor(Math.random() * addresses.length)];
-                    const randomOfficer = officers[Math.floor(Math.random() * officers.length)];
+                    const randomProduct = products[Math.floor(Math.random() * products.length)];
+                    const randomSalesPerson = salesPersons[Math.floor(Math.random() * salesPersons.length)];
                     const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
                     const randomMethod = methods[Math.floor(Math.random() * methods.length)];
+                    const randomQuantity = Math.floor(Math.random() * 5) + 1;
+                    const randomUnitPrice = Math.floor(Math.random() * 2000000) + 50000; // 50K - 2M
                     
-                    const bill = {
+                    const sale = {
                         id: Date.now() + Math.random(),
                         customerName: randomName,
                         customerPhone: `08${Math.floor(Math.random() * 1000000000).toString().padStart(9, '0')}`,
                         customerAddress: randomAddress,
-                        amount: Math.floor(Math.random() * 5000000) + 100000, // 100K - 5M
-                        dueDate: new Date(Date.now() + Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                        productName: randomProduct,
+                        quantity: randomQuantity,
+                        unitPrice: randomUnitPrice,
+                        totalAmount: randomQuantity * randomUnitPrice,
                         paymentMethod: randomMethod,
                         status: randomStatus,
-                        description: `Tagihan ${randomMethod} - Generated Data`,
-                        officerName: randomOfficer,
+                        description: `Penjualan ${randomMethod} - Generated Data`,
+                        salesPerson: randomSalesPerson,
                         createdAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString(),
                         createdBy: 'System Generator'
                     };
                     
-                    bills.push(bill);
+                    sales.push(sale);
                     generated++;
                 }
                 
-                localStorage.setItem('bills', JSON.stringify(bills));
+                localStorage.setItem('sales', JSON.stringify(sales));
                 
                 const progressPercent = (generated / count) * 100;
                 progressBar.style.width = `${progressPercent}%`;
@@ -2457,8 +2465,8 @@
         // Utility functions
         function getStatusColor(status) {
             switch (status) {
-                case 'paid': return 'bg-green-100 text-green-800';
-                case 'pending': return 'bg-yellow-100 text-yellow-800';
+                case 'paid': return 'bg-blue-100 text-blue-800';
+                case 'hutang': return 'bg-orange-100 text-orange-800';
                 case 'overdue': return 'bg-red-100 text-red-800';
                 default: return 'bg-gray-100 text-gray-800';
             }
@@ -2467,7 +2475,7 @@
         function getStatusText(status) {
             switch (status) {
                 case 'paid': return 'Lunas';
-                case 'pending': return 'Pending';
+                case 'hutang': return 'Hutang';
                 case 'overdue': return 'Belum Lunas';
                 default: return 'Unknown';
             }
@@ -2493,5 +2501,5 @@
         // Initialize the application
         initApp();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9940d3ece3c4c9da',t:'MTc2MTM4NjAxNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99405abf85cdfd02',t:'MTc2MTM4MTA1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
